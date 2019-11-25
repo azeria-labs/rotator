@@ -8,7 +8,15 @@ ror = lambda val, r_bits, max_bits: \
 
 max_bits = 32
 
-input = int(raw_input("Enter the value you want to check: "))
+try:
+    myinput = int(raw_input("Enter the value you want to check: "))
+except NameError:
+    myinput = int(input("Enter the value you want to check: "))
+
+try:
+    test = xrange(0,1,2)
+except NameError:
+    xrange = range
 
 print()
 for n in xrange(1, 256):
@@ -17,11 +25,11 @@ for n in xrange(1, 256):
 
         rotated = ror(n, i, max_bits)
 
-        if(rotated == input):
-            print("The number %i can be used as a valid immediate number." % input)
+        if(rotated == myinput):
+            print("The number %i can be used as a valid immediate number." % myinput)
             print("%i ror %x --> %s" % (n, int(str(i), 16), rotated))
             print()
             sys.exit()
 
 else:
-    print("Sorry, %i cannot be used as an immediate number and has to be split." % input)
+    print("Sorry, %i cannot be used as an immediate number and has to be split." % myinput)
